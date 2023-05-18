@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Journal</h1>
+<div class="row">
+<div class="col s6">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ progress.training_date }}</span>
+      <p>Coach's advice: {{ progress.advice }}</p>
+      <p>Goal for today: {{ progress.goal }}</p>
+      <p>Exercises: {{ progress.exercise }}</p>
+    </div>
+    <div class="card-action">
+        <a href="{% url 'progresses_update' progress.id %}">Edit</a>
+        <a href="{% url 'progresses_delete' progress.id %}">Delete</a>
+    </div>
+  </div>
+    {% for photo in progress.photo_set.all %}
+  <img class="responsive-img card-panel" src="{{photo.url}}">
+    {% empty %}
+  <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+    <form action="{% url 'add_photo' progress.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br><br>
+      <button type="submit" class="btn">Upload Photo</button>
+  </form>
+</div>
+
+{% comment %} 1:M {% endcomment %}
+<div class="col s6">
+    <form action="{% url 'add_checklist' progress.id %}" method="POST">
+        {% csrf_token %}
+        <!-- Render the inputs -->
+        {{ checklist_form.as_p }}
+        <input type="submit" class="btn" value="Add Checklist">
+      </form>
+    <table class="striped">
+      <thead>
+        <tr>
+            <th>School Work</th><th>1 House Chore</th><th>Rest</th></tr>
+      </thead>
+      <tbody>
+        {% for checklist in progress.checklist_set.all %}
+          <tr>
+            <td>{{checklist.school}}</td>
+            <td>{{checklist.chore}}</td>
+            <td>{{checklist.rest}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% comment %} M:M {% endcomment %}
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>Drills Finished</h3>
+    {% if progress.recommendations.count %}
+      {% for recommendation in progress.recommendations.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ recommendation.drill }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'unassoc_recommendation' progress.id recommendation.id %}" method="POST">
+              {% csrf_token %}
+              {% comment %} <button type="submit" class="btn">Remove</button> {% endcomment %}
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No drills finished</h5>
+    {% endif %}
+  </div>
+  <!-- Available recommendations will come after this line -->
+  <div class="col s6">
+    <h3>Drills to Finish</h3>
+    {% if recommendations.count %}
+      {% for recommendation in recommendations.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ recommendation.drill }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_recommendation' progress.id recommendation.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn">Finished</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{progress.name}} Good Work! No more drills for this week</h5>
+    {% endif %}
+  </div>
+</div>
+{% comment %} <script>
+
+</script> {% endcomment %}
+{% endblock %}

@@ -1,0 +1,120 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+  
+  footer.page-footer {
+    padding-top: 0;
+    text-align: right;
+  }
+#navbar-fixed{
+  height:100px;
+}
+#top-nav{
+  background-color:#ffffff; 
+  color:#063F0C; 
+  height:200px;
+  padding: 50px 25px 100px 25px;  
+}
+.nav-content{
+  height: 125px;
+  display:grid;
+  justify-content: center;
+  align-items: center;
+}
+#bottom-tabs{
+  display:flex;
+  align-items: center;
+}
+#available-menu{
+  color:#063F0C;display:inline-block; margin:0;
+}
+#available-menu:hover{
+  display:block;
+  content: '';
+  border-bottom: solid 3px #063F0C;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+#availalbe-menu:hover:after{
+  transform: scaleX(1);
+}
+#available-menu:after{ transform-origin: 0% 50%;}
+
+#authenticated-menu{
+  color:white;display:inline-block; margin:0;
+  font-size: 150%;
+  margin-right:100px;
+}
+#authenticated-menu:after{
+  display:block;
+  content: '';
+  border-bottom: solid 3px white;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+  transform-origin:  0% 50%;
+}
+#authenticated-menu:hover:after{
+  transform: scaleX(1);
+}
+#authenticated-menu:after{ transform-origin: 0% 50%;}
+
+  /* sign-up page css */
+
+#create-an-account{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#caa-sign-up{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#signuphtml {
+    height: 597px;
+    width: 1170px;
+    left: 135px;
+    top: 167px;
+    border-radius: 0px;
+    margin: 400px;
+  }
+
+#logo{
+    margin-bottom:100px;
+}
+#logo-img-signup{
+    max-width: 100%;  
+    height: auto;  
+}
+#button:hover {
+    border-radius: 28px;
+  }
+
+#learn-more{
+  border-right:1px solid black;
+  height:2em;
+  /* font-family: Museo Sans; */
+  /* font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center; */
+}
+/* #log-in{
+  font-family: Museo Sans;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+} */

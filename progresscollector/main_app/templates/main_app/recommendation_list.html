@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Recommendationed Drill List</h1>
+
+{% for recommendation in recommendation_list %}
+  <a href="{% url 'recommendations_detail' recommendation.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ recommendation.drill }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

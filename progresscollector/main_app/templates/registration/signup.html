@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap Sign-Up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+<div id="signuphtml">
+  <div id="left-side" style="width: 50%; height: 100px;  float: left">
+    <div id="logo">
+      <img src="{% static 'images/Logo.png' %}" alt="Image" class="logo-img-signup">
+    </div>
+    <div id="learn-more" style="width: 50%; height: 100px; float: left">
+      <h5>What is Roadmap</h5>
+      <a class="waves-effect waves-light btn" style="background-color:#ffffff; color:#063F0C; border-radius:28px" id="button">LEARN MORE</a>
+    </div>
+    <div id="log-in" style="margin-left: 65%; height: 100px">
+      <h5>Already have an account?</h5>
+      <a class="waves-effect waves-light btn" style="background-color:#ffffff; color:#063F0C; border-radius:28px" id="button">LOG IN</a>
+    </div>
+  </div>
+
+  <div id="right-side" style="margin-left: 65%; height: 100px">
+    <div id="create-an-account">
+      <h4>CREATE AN ACCOUNT</h4>
+      <p class="red-text">{{ error_message }}</p>
+      <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="caa-sign-up">
+        <input type="submit" class="btn" value="Sign Up" style="background-color:#063F0C; color:#ffffff; border-radius:28px; margin-top:50px; margin-left:40%">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

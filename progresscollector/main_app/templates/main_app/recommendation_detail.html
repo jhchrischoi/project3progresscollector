@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Recommendation Details</h1>
+
+<div class="row">
+  <div class="col s6 col-offset-3">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ recommendation.drill }}</span>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'recommendations_update' recommendation.id %}">Edit</a>
+        <a href="{% url 'recommendations_delete' recommendation.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
